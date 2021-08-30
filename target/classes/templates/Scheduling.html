@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Health Administration System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="./css/Scheduling.css" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar_container">
+            <a href="/" id="navbar__logo">Health Administration</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a th:href="@{/Index}" class="navbar__links">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a th:href="@{/Patients}" class="navbar__links">Patients</a>
+                </li>
+                <li class="navbar__item">
+                    <a th:href="@{/Employee}" class="navbar__links">Employee</a>
+                </li>
+                <li class="navbar__item">
+                    <a th:href="@{/Scheduling}" class="navbar__links">Scheduling</a>
+                </li>
+                <li class="navbar__item">
+                    <a th:href="@{/ContactUs}" class="navbar__links">Contact Us</a>
+                </li>
+                <li class="navbar__btn">
+                    <a th:href="@{/Index}" class="button">Get Started</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="main">
+        <div class="main__container">
+            <div class="main__content">
+                <h1>Scheduling</h1>
+                <h2>Month</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sunday</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                            <th>Saturday</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>12</td>
+                            <td>13</td>
+                            <td>14</td>
+                            <td>15</td>
+                            <td>16</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>18</td>
+                            <td>19</td>
+                            <td>20</td>
+                            <td>21</td>
+                            <td>22</td>
+                            <td>23</td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>25</td>
+                            <td>26</td>
+                            <td>27</td>
+                            <td>28</td>
+                            <td>29</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>Schedule an appointment</h2>
+                <form th:action="@{/Scheduling/addAppointment}" method="post">
+                    <div class="schedule-form">
+                        <i class="fas fa-user-circle" id="icon"></i>
+                        <label for="inputUser">First Name</label>
+                        <input type="text" class="form-user" id="inputName" name="patientFirstName">
+                    </div>
+                    <div class="schedule-form">
+                        <i class="fas fa-user-circle" id="icon"></i>
+                        <label for="inputUser">Last Name</label>
+                        <input type="text" class="form-user" id="inputName" name="patientLastName">
+                    </div>
+                    <div class="schedule-form">
+                        <i class="fas fa-envelope" id="icon"></i>
+                        <label for="inputUser">Email</label>
+                        <input type="email" class="form-user" id="inputEmail" name="patientEmail">
+                    </div>
+                    <div class="schedule-form">
+                        <i class="fas fa-phone" id="icon"></i>
+                        <label for="inputUser">Phone Number</label>
+                        <input type="text" class="form-user" id="inputPhone" name="patientPhone">
+                    </div>
+                    <div class="schedule-form">
+                        <i class="fas fa-calendar" id="icon"></i>
+                        <label for="inputDate">Date</label>
+                        <input type="date" class="form-user" id="inputDate" name="date">
+                    </div>
+                    <div class="schedule-form">
+                        <i class="fas fa-stethoscope" id="icon"></i>
+                        <label for="inputDoctor">Doctor</label>
+                        <input type="text" class="form-user" id="inputDoctor" name="doctorLastName">
+                    </div>
+                    <button type="submit" class="btn btn-info" id="schedule" style="width: 120px;">Schedule</button>
+                </form>
+            </div>
+            <div class="schedule-list">
+                <h2>Upcoming Appointments</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Scheduling ID</th>
+                            <th>First Name</th>
+                            <th>LastName</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Date</th>
+                            <th>Doctor</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="scheduling: ${scheduling}">
+                            <td th:text="${scheduling.scheduleId}"></td>
+                            <td th:text="${scheduling.patientFirstName}"></td>
+                            <td th:text="${scheduling.patientLastName}"></td>
+                            <td th:text="${scheduling.patientEmail}"></td>
+                            <td th:text="${scheduling.patientPhone}"></td>
+                            <td th:text="${scheduling.date}"></td>
+                            <td th:text="${scheduling.doctorLastName}"></td>
+                            <td>
+                                <div class="btn-group">
+                                    <a th:href="@{/Scheduling/removeAppointment/(id=${scheduling.scheduleId})}"
+                                        class="btn btn-danger" id="deleteButton" data-bs-toggle="modal"
+                                        data-bs-target="#deleteAppointmentModal">
+                                        Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="deleteAppointmentModal" tabindex="-1" aria-labelledby="deleteAppointmentLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteAppointmentLabel">Delete Employee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this employee?</p>
+                </div>
+                <div class="modal-footer">
+                    <a id="confirmDelete" class="btn btn-danger" href="">Yes, Delete</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/scheduling.js"></script>
+    <script src="https://kit.fontawesome.com/5309d88ab9.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+</body>

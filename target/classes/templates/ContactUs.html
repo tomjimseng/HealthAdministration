@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Health Administration System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="./css/ContactUs.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar_container">
+            <a href="/" id="navbar__logo">Health Administration</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a th:href="@{/Index}" class="navbar__links">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a th:href="@{/Patients}" class="navbar__links">Patients</a>
+                </li>
+                <li class="navbar__item">
+                    <a th:href="@{/Employee}" class="navbar__links">Employee</a>
+                </li>
+                <li class="navbar__item">
+                    <a th:href="@{/Scheduling}" class="navbar__links">Scheduling</a>
+                </li>
+                <li class="navbar__item">
+                    <a th:href="@{/ContactUs}" class="navbar__links">Contact Us</a>
+                </li>
+                <li class="navbar__btn">
+                    <a th:href="@{/Index}" class="button">Get Started</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="main">
+        <div class="main__container">
+            <div class="main__content">
+                <h1>Contact Us</h1>
+                <form th:action="@{ContactUs/createMessage}" method="post">
+                    <div class="icon-name">
+                        <i class="fas fa-user-circle" id="icon"></i>
+                        <label for="inputUser">Full Name</label>
+                        <input type="name" class="form-user" id="inputName" placeholder="Full Name" name="fullName">
+                    </div>
+                    <div class="icon-email">
+                        <i class="fas fa-envelope" id="icon"></i>
+                        <label for="inputUser">Email</label>
+                        <input type="email" class="form-user" id="inputEmail" placeholder="Email" name="email">
+                    </div>
+                    <div class="icon-phone">
+                        <i class="fas fa-phone" id="icon"></i>
+                        <label for="inputUser">Phone Number</label>
+                        <input type="phone" class="form-user" id="inputPhone"
+                            placeholder="Phone number" name="phone">
+                    </div>
+                    <div class="message-area">
+                        <i class="fas fa-comment-dots" id="icon"></i>
+                        <label for="inputUser">Message</label>
+                        <textarea type="text" class="form-user" id="inputMessage"
+                            placeholder="Enter Your Message" name="message"></textarea>
+                    </div>
+                    <div class="submit-button">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="./js/contactus.js"></script>
+    <script src="https://kit.fontawesome.com/5309d88ab9.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+</body>

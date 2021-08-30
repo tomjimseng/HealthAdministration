@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Health Administration System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link href="./css/EmployeeList.css" rel="stylesheet">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="navbar_container">
+      <a href="/" id="navbar__logo">Health Administration</a>
+      <div class="navbar__toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="navbar__menu">
+        <li class="navbar__item">
+          <a th:href="@{/HomePage}" class="navbar__links">Home</a>
+        </li>
+        <li class="navbar__item">
+          <a th:href="@{/Patients}" class="navbar__links">Patients</a>
+        </li>
+        <li class="navbar__item">
+          <a th:href="@{/Employee}" class="navbar__links">Employee</a>
+        </li>
+        <li class="navbar__item">
+          <a th:href="@{/Scheduling}" class="navbar__links">Scheduling</a>
+        </li>
+        <li class="navbar__item">
+          <a th:href="@{/ContactUs}" class="navbar__links">Contact Us</a>
+        </li>
+        <li class="navbar__btn">
+          <a th:href="@{/HomePage}" class="button">Get Started</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="main">
+    <div class="main__container">
+      <div class="main__content">
+        <h1>Employee List</h1>
+        <button type="button" class="btn btn-danger" id="addEmployeeButton" data-bs-toggle="modal"
+          data-bs-target="#addEmployeeModal">Create Employee</button>
+        <table>
+          <thead>
+            <tr>
+              <th>Employee Id</th>
+              <th>First Name</th>
+              <th>LastName</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Department</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="employee: ${employees}">
+              <td th:text="${employee.id}"></td>
+              <td th:text="${employee.firstName}"></td>
+              <td th:text="${employee.lastName}"></td>
+              <td th:text="${employee.email}"></td>
+              <td th:text="${employee.phone}"></td>
+              <td th:text="${employee.department}"></td>
+              <td>
+                <div class="btn-group">
+                  <a th:href="@{/Employee/findById/(id=${employee.id})}" class="btn btn-primary" id="editButton"
+                    data-bs-toggle="modal" data-bs-target="#editEmployeeModal">Edit</a>
+                  <a th:href="@{/Employee/removeEmployee/(id=${employee.id})}" class="btn btn-danger" id="deleteButton"
+                    data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal">
+                    Delete
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addModalLabel">Add Employee</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form th:action="@{/Employee/addEmployee}" method="post">
+            <div class="form-group">
+              <label for="employee-first-name" class="col-form-label">First Name:</label>
+              <input type="text" class="form-control" id="employee-first-name-add" name="firstName">
+            </div>
+            <div class="form-group">
+              <label for="employee-last-name" class="col-form-label">Last Name:</label>
+              <input type="text" class="form-control" id="employee-last-name-add" name="lastName">
+            </div>
+            <div class="form-group">
+              <label for="employee-email" class="col-form-label">Email:</label>
+              <input type="email" class="form-control" id="employee-email-add" name="email">
+            </div>
+            <div class="form-group">
+              <label for="employee-phone" class="col-form-label">Phone:</label>
+              <input type="text" class="form-control" id="employee-phone-add" name="phone">
+            </div>
+            <div class="form-group">
+              <label for="employee-department" class="col-form-label">Department:</label>
+              <input type="text" class="form-control" id="employee-department-add" name="department">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-danger">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="editEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Update Employee</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form th:action="@{/Employee/updateEmployee}" method="put">
+            <div class="form-group">
+              <label for="employee-id" class="col-form-label">Id:</label>
+              <input type="text" class="form-control" id="employee-id" name="id" readonly>
+            </div>
+            <div class="form-group">
+              <label for="employee-first-name" class="col-form-label">First Name:</label>
+              <input type="text" class="form-control" id="employee-first-name-edit" name="firstName">
+            </div>
+            <div class="form-group">
+              <label for="employee-last-name" class="col-form-label">Last Name:</label>
+              <input type="text" class="form-control" id="employee-last-name-edit" name="lastName">
+            </div>
+            <div class="form-group">
+              <label for="employee-email" class="col-form-label">Email:</label>
+              <input type="email" class="form-control" id="employee-email-edit" name="email">
+            </div>
+            <div class="form-group">
+              <label for="employee-phone" class="col-form-label">Phone:</label>
+              <input type="text" class="form-control" id="employee-phone-edit" name="phone">
+            </div>
+            <div class="form-group">
+              <label for="employee-department" class="col-form-label">Department:</label>
+              <input type="text" class="form-control" id="employee-department-edit" name="department">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-danger">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="deleteEmployeeModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Employee</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this employee?</p>
+        </div>
+        <div class="modal-footer">
+          <a id="confirmDelete" class="btn btn-danger" href="">Yes, Delete</a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./js/employee.js"></script>
+  <script src="https://kit.fontawesome.com/5309d88ab9.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+</body>
