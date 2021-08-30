@@ -20,7 +20,7 @@ This is a full stack java project built with Spring Boot, Java, HTML, CSS, and J
     -As a user I want to be able to see appointments that were scheduled
 
 ## Technical Specification
- #### Technical 
+ #### Tech 
     *Spring Boot
     *HTML
     *CSS
